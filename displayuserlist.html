@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width , initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Pagination in Javascript</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- <script src="tablemanager.js"></script> -->
+</head>
+<body>
+	
+	<div class="container">
+
+		<table >
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Email</th>
+					<th>FirstName</th>
+					<th>LastName</th>
+					
+				</tr>
+			</thead>
+			<tbody id="data"></tbody>
+		</table>
+	</div>
+
+<script>
+	fetch("https://reqres.in/api/users?page=2").then(
+     res => {res.json().then(
+	 data =>{
+		console.log(data);
+		if(data.length > 0){
+			var temp="";
+
+			data.forEach((data) => {
+				temp += "<tr>";
+				
+				temp += "<td>"+data.email+"</td>";
+				temp += "<td>"+data.first_name+"</td>";
+				temp += "<td>"+data.id+"</td>";
+				temp += "<td>"+data.last_name+"</td><tr>";
+			})
+
+			document.getElementById("data").innerHTML =temp;
+		}
+		}
+		)
+ }
+ )
+	
+   		
+</script>
+</body>
+</html>
